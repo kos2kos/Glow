@@ -9,10 +9,17 @@ class Message extends Component{
     }
   }
 
+  handleClick = () =>{
+    this.setState({clicked: true})
+  }
+
   render(){
     return(
-      <div>
+      <div onClick={this.handleClick}>
         <strong>{"Message " + this.props.thisMessage.id + ":"}</strong>{"      " + this.props.thisMessage.text}
+        <div>  <strong>Emojis:  </strong> </div>
+        {this.state.clicked ? <div className={'flex'}> <EmojiList message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/></div> : null}
+
       </div>
     )
   }

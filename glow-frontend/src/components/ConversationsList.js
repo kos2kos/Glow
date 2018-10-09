@@ -17,6 +17,11 @@ class ConversationsList extends React.Component {
       .then(conversations => this.setState({ conversations }));
   };
 
+
+  submitEmoji = (message) => {
+    console.log("submit Emoji");
+  }
+
   handleClick = id => {
     this.setState({ activeConversation: id });
   };
@@ -56,7 +61,9 @@ class ConversationsList extends React.Component {
         <ul>{mapConversations(conversations, this.handleClick)}</ul>
         <NewConversationForm />
         {activeConversation ? (
+
           <MessagesArea
+            submitEmoji={this.submitEmoji}
             conversation={findActiveConversation(
               conversations,
               activeConversation
