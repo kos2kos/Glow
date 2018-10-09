@@ -3,6 +3,20 @@ class MessagesController < ApplicationController
     @messages = Message.all
     render json: @messages
   end
+
+  def show
+    @message = Message.find(params[:id])
+    render json: @message
+  end
+
+  def update
+    byebug
+    @message = Message.find(params[:id])
+    @emoji = Emoji.find(params[:emojis][0][:id])
+    @message.update(emojis: [@emoji])
+    render json: @message
+  end
+
   def create
     message = Message.new(message_params)
     conversation = Conversation.find(message_params[:conversation_id])

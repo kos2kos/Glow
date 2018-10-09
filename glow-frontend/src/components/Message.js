@@ -5,20 +5,27 @@ class Message extends Component{
   constructor() {
     super()
     this.state = {
-      clicked: false
+      clicked: 0
     }
   }
 
   handleClick = () =>{
-    this.setState({clicked: true})
+    this.setState({clicked: this.props.thisMessage.id})
   }
 
   render(){
     return(
       <div onClick={this.handleClick}>
         <strong>{"Message " + this.props.thisMessage.id + ":"}</strong>{"      " + this.props.thisMessage.text}
-        <div>  <strong>Emojis:  </strong> </div>
-        {this.state.clicked ? <div className={'flex'}> <EmojiList message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/></div> : null}
+        <div>  <strong>Emojis:  </strong>
+          {this.props.thisMessage.emojis.map(
+            emoji => (<img src={require(`../public/images/${emoji.img}`)} alt=""
+              height="18"
+              width="18"
+              />)
+          )}
+        </div>
+        {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}> <EmojiList message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/></div> : null}
 
       </div>
     )
