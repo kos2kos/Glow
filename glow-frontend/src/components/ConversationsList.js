@@ -17,9 +17,26 @@ class ConversationsList extends React.Component {
       .then(conversations => this.setState({ conversations }));
   };
 
+  updateConversation = (responseObj) => {
+    console.log("update conversation", responseObj);
+    console.log("conversation before filter, ", this.state.conversations);
 
-  submitEmoji = (message) => {
-    console.log("submit Emoji");
+    let updatedConversation = this.state.conversations.map(conversation => {
+      if (conversation.id === responseObj.conversation_id) {
+        conversation.messages.map(message => {
+          if (message.id === responseObj.id) {
+            message.emojis = responseObj.emojis
+          }
+        })
+      }
+        return conversation
+    })
+    this.setState({conversations: updatedConversation})
+  }
+
+
+  checkActionCable = (conversation) => {
+    console.log("Action Cable conversation is...", conversation);
   }
 
   handleClick = id => {
@@ -48,6 +65,7 @@ class ConversationsList extends React.Component {
     return (
       <div className="conversationsList" style={{textAlign: "center"}}>
         <ActionCable
+          checkActionCable={this.checkActionCable(this.state)}
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />
@@ -63,6 +81,7 @@ class ConversationsList extends React.Component {
         {activeConversation ? (
 
           <MessagesArea
+            updateConversation={this.updateConversation}
             submitEmoji={this.submitEmoji}
             conversation={findActiveConversation(
               conversations,

@@ -25,7 +25,9 @@ class Message extends Component{
               />)
           )}
         </div>
-        {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}> <EmojiList message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/></div> : null}
+        {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}> <EmojiList
+        updateConversation={this.props.updateConversation}
+        message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/></div> : null}
 
       </div>
     )

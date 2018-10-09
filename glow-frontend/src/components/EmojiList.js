@@ -29,7 +29,7 @@ class EmojiList extends Component{
         }
       })
       .then(res => res.json())
-      .then(console.log)
+      .then(patchObj => this.props.updateConversation(patchObj))
     }
 
     render(){

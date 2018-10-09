@@ -10,7 +10,9 @@ const MessagesArea = (props) => {
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
     );
     return sortedMessages.map(message => {
-      return <ul> <Message submitEmoji={props.submitEmoji}
+      return <ul> <Message
+        updateConversation={props.updateConversation}
+        submitEmoji={props.submitEmoji}
         key={message.id} thisMessage={message}/></ul>
     });
   };
