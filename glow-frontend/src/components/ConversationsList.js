@@ -41,7 +41,7 @@ class ConversationsList extends React.Component {
   render = () => {
     const { conversations, activeConversation } = this.state;
     return (
-      <div className="conversationsList">
+      <div className="conversationsList" style={{textAlign: "center"}}>
         <ActionCable
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
@@ -81,9 +81,9 @@ const findActiveConversation = (conversations, activeConversation) => {
 const mapConversations = (conversations, handleClick) => {
   return conversations.map(conversation => {
     return (
-      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+      <ul key={conversation.id} onClick={() => handleClick(conversation.id)}>
         {conversation.title}
-      </li>
+      </ul>
     );
   });
 };

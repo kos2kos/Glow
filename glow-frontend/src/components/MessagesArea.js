@@ -1,11 +1,13 @@
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
+import Message from './Message'
+import EmojiList from './EmojiList'
 
 const MessagesArea = ({
   conversation: { id, title, messages },
 }) => {
   return (
-    <div className="messagesArea">
+    <div className="messagesArea" style={{textAlign: "center"}}>
       <h2>{title}</h2>
       <ul>{orderedMessages(messages)}</ul>
       <NewMessageForm conversation_id={id} />
@@ -22,6 +24,6 @@ const orderedMessages = messages => {
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   );
   return sortedMessages.map(message => {
-    return <li key={message.id}>{message.text}</li>;
+    return <ul> <Message key={message.id} thisMessage={message}/></ul>
   });
 };

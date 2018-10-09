@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+  def index
+    @messages = Message.all
+    render json: @messages
+  end
   def create
     message = Message.new(message_params)
     conversation = Conversation.find(message_params[:conversation_id])

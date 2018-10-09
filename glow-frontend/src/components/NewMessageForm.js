@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
+import EmojiList from './EmojiList'
 
 class NewMessageForm extends React.Component {
   state = {
