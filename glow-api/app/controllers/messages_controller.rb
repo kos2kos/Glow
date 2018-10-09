@@ -10,10 +10,10 @@ class MessagesController < ApplicationController
   end
 
   def update
-    byebug
     @message = Message.find(params[:id])
     @emoji = Emoji.find(params[:emojis][0][:id])
-    @message.update(emojis: [@emoji])
+    arrayOfEmojis = params[:emojis].map {|emoji| Emoji.find(emoji[:id])}
+    @message.update(emojis: arrayOfEmojis)
     render json: @message
   end
 
