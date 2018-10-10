@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 
@@ -13,24 +14,20 @@ class NewMessageForm extends React.Component {
 
   handleChange = e => {
     this.setState({ text: e.target.value });
-    console.log("This is handleChange state,  ", this.state.text);
-
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     fetch(`${API_ROOT}/messages`, {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify(this.state)
-    })
-    .then(handle => this.props.handleUpdate())
+    });
     this.setState({ text: '' });
-
   };
 
   render = () => {
-    console.log("this is the state currently, ", this.state.text);
     return (
       <div className="newMessageForm">
         <form onSubmit={this.handleSubmit}>

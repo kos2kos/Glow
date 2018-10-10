@@ -8,47 +8,38 @@ import Cable from './Cable';
 class ConversationsList extends React.Component {
   state = {
     conversations: [],
-    activeConversation: null,
-    updateMessage: 9
+    activeConversation: null
   };
 
   componentDidMount = () => {
     fetch(`${API_ROOT}/conversations`)
       .then(res => res.json())
       .then(conversations => this.setState({ conversations }));
-    }
-
-    handleUpdate = () => {
-      fetch(`${API_ROOT}/conversations`)
-        .then(res => res.json())
-        .then(conversations => this.setState({ conversations }));
-    }
-
+  };
 
   handleClick = id => {
-    this.setState({ activeConversation: id })
-  }
+    this.setState({ activeConversation: id });
+  };
 
   handleReceivedConversation = response => {
-    const { conversation } = response
+    const { conversation } = response;
     this.setState({
       conversations: [...this.state.conversations, conversation]
-    })
-  }
+    });
+  };
 
   handleReceivedMessage = response => {
-    const { message } = response
-    const conversations = [...this.state.conversations]
+    const { message } = response;
+    const conversations = [...this.state.conversations];
     const conversation = conversations.find(
       conversation => conversation.id === message.conversation_id
-    )
-    conversation.messages = [...conversation.messages, message]
-    this.setState({ conversations })
-  }
+    );
+    conversation.messages = [...conversation.messages, message];
+    this.setState({ conversations });
+  };
 
   render = () => {
-    const { conversations, activeConversation } = this.state
-    console.log();
+    const { conversations, activeConversation } = this.state;
     return (
       <div className="conversationsList">
         <ActionCable
@@ -61,14 +52,11 @@ class ConversationsList extends React.Component {
             handleReceivedMessage={this.handleReceivedMessage}
           />
         ) : null}
-
-
         <h2>Conversations</h2>
         <ul>{mapConversations(conversations, this.handleClick)}</ul>
         <NewConversationForm />
         {activeConversation ? (
           <MessagesArea
-            handleUpdate={this.handleUpdate}
             conversation={findActiveConversation(
               conversations,
               activeConversation
@@ -76,8 +64,8 @@ class ConversationsList extends React.Component {
           />
         ) : null}
       </div>
-    )
-  }
+    );
+  };
 }
 
 export default ConversationsList;
@@ -94,7 +82,7 @@ const mapConversations = (conversations, handleClick) => {
   return conversations.map(conversation => {
     return (
       <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-        <strong>{conversation.username}: </strong>  {conversation.title}
+        {conversation.title}
       </li>
     );
   });
