@@ -17,19 +17,23 @@ class EmojiList extends Component{
 
     postEmojiToMessage = (emoji) =>{
       console.log("This a message from ",this.props.message, "with this emoji ", emoji.img);
+      console.log("this is the conversation id  ", this.props.message.conversation_id);
 
-      fetch(`http://localhost:3000/messages/${this.props.message.id}`,{
-        method: "PATCH",
-        mode: "cors",
-        body: JSON.stringify({
-          emojis: [...this.props.message.emojis,emoji]
-        }),
-        headers: {
+      if (this.props.message.conversation_id){
+
+        fetch(`http://localhost:3000/messages/${this.props.message.id}`,{
+          method: "PATCH",
+          mode: "cors",
+          body: JSON.stringify({
+            emojis: [...this.props.message.emojis,emoji],
+            conversation_id: this.props.message.conversation_id
+          }),
+          headers: {
             'Content-Type': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(patchObj => this.props.updateConversation(patchObj))
+          }
+        })
+
+      }
     }
 
     render(){

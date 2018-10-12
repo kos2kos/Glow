@@ -52,13 +52,35 @@ class ConversationsList extends React.Component {
 
   handleReceivedMessage = response => {
     const { message } = response;
+    console.log(message);
     const conversations = [...this.state.conversations];
     const conversation = conversations.find(
       conversation => conversation.id === message.conversation_id
     );
-    conversation.messages = [...conversation.messages, message];
+    const foundMessage = conversation.messages.find(findMessage => findMessage.id === message.id)
+    // console.log(this.findAndReplace(message, conversation.messages));
+    console.log("Finding message  ", foundMessage);
+    if(foundMessage){
+      conversation.messages = this.findAndReplace(message, conversation.messages)
+    } else {
+      conversation.messages = [...conversation.messages, message]
+    }
+
     this.setState({ conversations });
   };
+
+  findAndReplace = (message, conversation_messages) => {
+    console.log(conversation_messages);
+
+    let newConvo = conversation_messages.map(convoMessage => {
+      if (convoMessage.id === message.id){
+        convoMessage.emojis = message.emojis
+        return convoMessage
+      }
+      return convoMessage
+    })
+    return newConvo
+  }
 
   render = () => {
     const { conversations, activeConversation } = this.state;

@@ -9,7 +9,7 @@ class EmojiButton extends Component {
     const {emoji} = this.props
 
     return(
-        <button onClick={() => this.props.postEmojiToMessage(emoji)}> <img src={require(`../public/images/${emoji.img}`)} alt=""
+        <button onClick={() => this.props.postEmojiToMessage(emoji)}> <img src={require(`../../public/images/${emoji.img}`)} alt=""
           height="18"
           width="18"
           /> </button>

@@ -11,20 +11,18 @@ class MessagesController < ApplicationController
 
   def update
     @message = Message.find(params[:id])
-    arrayOfEmojis = params[:emojis].map {|emoji| Emoji.create(img: emoji[:img])}
+    arrayOfEmojis = params[:emojis].map {|emoji| Emoji.find(emoji[:id])}
     @message.update(emojis: arrayOfEmojis)
-    render json: @message
+    if @message.save
+      broadcastConversation(@message, params[:conversation_id])
+    end
   end
 
   def create
     message = Message.new(message_params)
     conversation = Conversation.find(message_params[:conversation_id])
     if message.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        MessageSerializer.new(message)
-      ).serializable_hash
-      MessagesChannel.broadcast_to conversation, serialized_data
-      head :ok
+      broadcastConversation(message, conversation.id)
     end
   end
 

@@ -19,7 +19,7 @@ class Message extends Component{
         <strong>{"Message " + this.props.thisMessage.id + ":"}</strong>{"      " + this.props.thisMessage.text}
         <div>  <strong>Emojis:  </strong>
           {this.props.thisMessage.emojis.map(
-            emoji => (<img src={require(`../public/images/${emoji.img}`)} alt=""
+            emoji => (<img src={require(`../../public/images/${emoji.img}`)} alt=""
               height="18"
               width="18"
               />)
