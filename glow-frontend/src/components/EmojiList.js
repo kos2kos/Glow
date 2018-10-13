@@ -16,8 +16,6 @@ class EmojiList extends Component{
     }
 
     postEmojiToMessage = (emoji) =>{
-      console.log("This a message from ",this.props.message, "with this emoji ", emoji.img);
-      console.log("this is the conversation id  ", this.props.message.conversation_id);
 
       if (this.props.message.conversation_id){
 
