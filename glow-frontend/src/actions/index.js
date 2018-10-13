@@ -10,12 +10,24 @@ export const loadActiveConversation = (id, conversations) => {
 }
 
 
-export const handleReceivedMessage = (response)=> {
-  return " "
+export const addMessage = (message, conversations)=> {
+
+  const conversation = conversations.find(
+    conversation => conversation.id === message.conversation_id
+  );
+  const foundMessage = conversation.messages.find(findMessage => findMessage.id === message.id)
+
+  if(foundMessage){
+    conversation.messages = findAndReplace(message, conversation.messages)
+  } else {
+    conversation.messages = [...conversation.messages, message]
+  }
+  return {type: "ADD_MESSAGE", payload: conversations}
 }
 
+
+
 export const addConversation = (prevConvo, conversation) =>{
-  console.log("addConversation", prevConvo);
   return {type: "ADD_CONVERSATION", payload: [...prevConvo,conversation]}
 }
 
@@ -44,4 +56,15 @@ const loadGroupChat = (messages) => {
       messages
     }
   }
+}
+
+const findAndReplace = (message, conversation_messages) => {
+  let newConvo = conversation_messages.map(convoMessage => {
+    if (convoMessage.id === message.id){
+      convoMessage.emojis = message.emojis
+      return convoMessage
+    }
+    return convoMessage
+  })
+  return newConvo
 }

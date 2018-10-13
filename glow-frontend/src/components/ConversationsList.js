@@ -6,7 +6,7 @@ import MessagesArea from './MessagesArea';
 import Cable from './Cable';
 
 import { connect } from 'react-redux';
-import { loadActiveConversation, addConversation } from '../actions'
+import { loadActiveConversation, addConversation, addMessage } from '../actions'
 
 class ConversationsList extends React.Component {
   // componentDidMount = () => {
@@ -35,12 +35,7 @@ class ConversationsList extends React.Component {
   }
 
 
-  checkActionCable = (conversation) => {
-    console.log("Action Cable conversation is...", conversation);
-  }
-
   handleClick = id => {
-    // this.setState({ activeConversation: id });
     this.props.loadActiveConversation(id, this.props.conversations)
   };
 
@@ -51,26 +46,24 @@ class ConversationsList extends React.Component {
 
   handleReceivedMessage = response => {
     const { message } = response;
-    console.log(message);
+
     const conversations = [...this.props.conversations];
     const conversation = conversations.find(
       conversation => conversation.id === message.conversation_id
     );
+
     const foundMessage = conversation.messages.find(findMessage => findMessage.id === message.id)
-    // console.log(this.findAndReplace(message, conversation.messages));
-    console.log("Finding message  ", foundMessage);
+
     if(foundMessage){
       conversation.messages = this.findAndReplace(message, conversation.messages)
     } else {
       conversation.messages = [...conversation.messages, message]
     }
-
+    this.props.addMessage(message, this.props.conversations)
     this.setState({ conversations });
   };
 
   findAndReplace = (message, conversation_messages) => {
-    console.log(conversation_messages);
-
     let newConvo = conversation_messages.map(convoMessage => {
       if (convoMessage.id === message.id){
         convoMessage.emojis = message.emojis
@@ -82,12 +75,10 @@ class ConversationsList extends React.Component {
   }
 
   render = () => {
-    console.log(this.state, 'conversation list state')
-    console.log(this.props, 'ConversationsList props')
+
     return (
       <div className="conversationsList" style={{textAlign: "center"}}>
         <ActionCable
-          checkActionCable={this.checkActionCable(this.props)}
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />
@@ -120,11 +111,7 @@ class ConversationsList extends React.Component {
 
 // helpers
 
-// const findActiveConversation = (conversations, activeConversation) => {
-//   return conversations.find(
-//     conversation => conversation.id === activeConversation
-//   );
-// };
+
 
 const mapConversations = (conversations, handleClick) => {
   return conversations.map(conversation => {
@@ -145,4 +132,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 
-export default connect(mapStateToProps, {loadActiveConversation, addConversation})(ConversationsList);
+export default connect(mapStateToProps, {loadActiveConversation, addConversation, addMessage})(ConversationsList);

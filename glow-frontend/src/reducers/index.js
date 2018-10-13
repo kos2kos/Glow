@@ -24,6 +24,12 @@ const reducer = (state = initialState, action) => {
       conversations: action.payload
     }
 
+    case 'ADD_MESSAGE':
+    return{
+      ...state,
+      conversations: action.payload
+    }
+
 
     default:
     return state
