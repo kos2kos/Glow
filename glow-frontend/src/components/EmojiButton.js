@@ -8,6 +8,7 @@ class EmojiButton extends Component {
   render(){
     const {emoji} = this.props
 
+    console.log(emoji);
     return(
         <button onClick={() => this.props.postEmojiToMessage(emoji)}> <img src={require(`../../public/images/${emoji.img}`)} alt=""
           height="18"

@@ -36,6 +36,7 @@ class EmojiList extends Component{
 
     render(){
       const {emojis} = this.state
+      console.log(this.state);
       return(
         <div className="flex-container row">
           {

@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.active_storage.service_urls_expire_in = 20.seconds
   # Code is not reloaded between requests.
   config.cache_classes = true
 
