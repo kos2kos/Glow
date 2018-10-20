@@ -14,7 +14,6 @@ class Message extends Component{
   }
 
   render(){
-    console.log(this.state.clicked === this.props.thisMessage.id);
     return(
       <div onClick={this.handleClick}>
         <br/>

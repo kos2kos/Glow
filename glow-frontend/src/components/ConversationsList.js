@@ -37,6 +37,7 @@ class ConversationsList extends React.Component {
 
   handleClick = id => {
     this.props.loadActiveConversation(id, this.props.conversations)
+    
   };
 
   handleReceivedConversation = response => {
@@ -75,9 +76,12 @@ class ConversationsList extends React.Component {
   }
 
   render = () => {
-
+    console.log(this.props)
+    console.log("this is state," ,this.state);
     return (
       <div className="conversationsList" style={{textAlign: "center"}}>
+        <h1>Current User: {this.props.activeUser.username}</h1>
+        <h1>{this.props.activeUser.username}'s Points: {this.props.activeUser.points}</h1>
         <ActionCable
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
@@ -125,7 +129,8 @@ const mapConversations = (conversations, handleClick) => {
 
 const mapStateToProps = state => ({
   conversations: state.conversations,
-  activeConversation: state.activeConversation
+  activeConversation: state.activeConversation,
+  activeUser: state.activeUser
 })
 
 const mapDispatchToProps = (dispatch) => ({

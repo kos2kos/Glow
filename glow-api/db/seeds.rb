@@ -21,3 +21,11 @@ runningShirt = Emoji.create({img:"runningShirt.png"})
 star = Emoji.create({img:"star.png"})
 
 trophy = Emoji.create({img:"trophy.png"})
+
+test1 = Conversation.create({title: "Group Chat 1"})
+test2 = Conversation.create({title: "Group Chat 2"})
+
+nkosi = User.create({username: "kos2kos"})
+tony = User.create({username: "tonyTiga", conversation_id:2})
+natsuki = User.create({username: "ms.Mashroom", conversation_id:2})
+isiah = User.create({username: "sneakyGuy", conversation_id: 2})

@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   def index
-    conversations = Conversation.all
-    render json: conversations
+    @conversations = Conversation.all
+    render json: @conversations
   end
 
   def create

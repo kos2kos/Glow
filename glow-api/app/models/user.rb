@@ -1,4 +1,7 @@
 class User < ApplicationRecord
   has_many :messages
-  belongs_to :conversation
+  has_many_attached :images
+  belongs_to :conversation, optional: true
+
+
 end

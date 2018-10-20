@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ConversationsList from './components/ConversationsList';
 import { connect } from 'react-redux'
 import { loadConversations } from './actions'
+import UserSignIn from './components/UserSignIn'
+import LeaderBoard from './components/LeaderBoard'
 
 class App extends Component {
 
@@ -13,7 +15,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <LeaderBoard />
+        <UserSignIn />
         <ConversationsList />
+
       </div>
     );
   }

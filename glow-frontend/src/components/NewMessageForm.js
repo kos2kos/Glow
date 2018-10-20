@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 import EmojiList from './EmojiList'
 import { DirectUpload } from "activestorage"
-
-
+import {  connect } from 'react-redux';
+import { submitMessage } from '../actions'
 class NewMessageForm extends React.Component {
   state = {
     text: '',
@@ -32,23 +31,15 @@ class NewMessageForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
     const imageData = new FormData()
 
+    imageData.append('user_id', this.props.activeUser.id)
     imageData.append("image",this.state.image)
     imageData.append("text", this.state.text)
     imageData.append("conversation_id", this.props.conversation_id)
-    console.log(imageData);
-    // debugger
-
-    fetch(`${API_ROOT}/messages`, {
-      method: 'POST',
-      headers: {
-        name: "test.jpg"
-      },
-      body: imageData
-    });
+    this.props.submitMessage(imageData, this.props.activeUser.id)
     this.setState({ text: '' });
+
   };
 
 
@@ -77,4 +68,8 @@ class NewMessageForm extends React.Component {
   };
 }
 
-export default NewMessageForm;
+  const mapStateToProps = state => ({
+    activeUser: state.activeUser
+  })
+
+export default connect(mapStateToProps, {submitMessage})(NewMessageForm)
