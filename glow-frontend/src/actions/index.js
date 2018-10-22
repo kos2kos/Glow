@@ -1,8 +1,22 @@
+import React, {Component} from 'react'
 import { API_ROOT } from '../constants';
 import { fetchConversations } from '../adapters/conversationAdapter'
 import { fetchUsers, findUser } from '../adapters/userAdapter'
 import { postMessage } from '../adapters/messageAdapter'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom"
 
+
+export const loadNewUser = (newUser) => {
+  return(dispatch)=>{
+    return dispatch()
+  }
+}
 
 export const submitMessage = (imageData, id) =>{
   return (dispatch)=>{
@@ -46,7 +60,9 @@ export const loadActiveUser = (name) => {
       .then(resp => resp.json())
       .then(users => {
         const activeUser = users.find(user => user.username === name)
-        return dispatch({type: "ACTIVE_USER", payload: activeUser})
+          if (activeUser){
+            return dispatch({type: "ACTIVE_USER", payload: activeUser})
+          }
       })
   }
 }

@@ -4,6 +4,11 @@ class ConversationsController < ApplicationController
     render json: @conversations
   end
 
+  def show
+    @conversation = Conversation.find(params[:id])
+    render json: @conversation
+  end
+
   def create
     conversation = Conversation.new(conversation_params)
     if conversation.save

@@ -9,13 +9,7 @@ import { connect } from 'react-redux';
 import { loadActiveConversation, addConversation, addMessage } from '../actions'
 
 class ConversationsList extends React.Component {
-  // componentDidMount = () => {
-  //   fetch(`${API_ROOT}/conversations`)
-  //     .then(res => res.json())
-  //     .then(conversations => this.setState({ conversations }));
-  // };
 
-  // Nkosi, we moved state to redux, now you must use dispatch in place of all the setStates. Good Luck...
 
   updateConversation = (responseObj) => {
     console.log("update conversation", responseObj);
@@ -37,7 +31,7 @@ class ConversationsList extends React.Component {
 
   handleClick = id => {
     this.props.loadActiveConversation(id, this.props.conversations)
-    
+
   };
 
   handleReceivedConversation = response => {

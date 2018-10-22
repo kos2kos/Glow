@@ -1,9 +1,27 @@
 const initialState = {
   conversations: [],
-  activeUser: {username: "Nkosi"},
+  activeUser: {
+    id: 1,
+    username: "kos2kos",
+    password: null,
+    conversation_id: 1,
+    points: 4,
+    workouts: [
+      {
+        id: 2,
+        text: "" ,
+        image_url: "http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aca974c1a388c38227730206936df0ab8b732c0c/007.jpg",
+        user_id: 1,
+        conversation_id: 1,
+        created_at: "2018-10-20T15:35:29.046Z",
+        updated_at: "2018-10-20T15:35:32.416Z"
+      }
+    ]
+  },
   activeConversation: {title: "Boom Town", messages: []},
   leaderboard: {kos2kos: 1}
 }
+
 
 
 const reducer = (state = initialState, action) => {

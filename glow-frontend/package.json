@@ -8,6 +8,7 @@
     "react-actioncable-provider": "^1.0.3",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
