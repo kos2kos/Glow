@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 import { connect } from 'react-redux';
-import  { loadActiveUser,loadActiveConversation } from '../actions'
+import  { loadActiveUser,loadActiveConversation, updateActiveUser, updateActiveConversation } from '../actions'
 
 class UserSignIn extends Component {
     state ={
@@ -80,4 +80,4 @@ const mapStateToProps = state => ({
   conversations: state.conversations
 })
 
-export default connect(mapStateToProps, {loadActiveUser,loadActiveConversation})(UserSignIn)
+export default connect(mapStateToProps, {loadActiveUser,loadActiveConversation, updateActiveUser, updateActiveConversation })(UserSignIn)

@@ -38,7 +38,8 @@ class SearchConversations extends Component {
         </form>
         {this.state.conversations.length > 0 ?
           this.state.conversations.map(conversation => {
-            return <SearchList conversation={conversation}/>
+            return <SearchList
+              history={this.props.history} conversation={conversation}/>
           })
           : null}
       </div>

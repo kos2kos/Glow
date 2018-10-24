@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EmojiList from './EmojiList'
+import '../App.css'
 
 class Message extends Component{
   constructor() {
@@ -14,38 +15,52 @@ class Message extends Component{
   }
 
   render(){
+    console.log("Props for Message,", this.props.cssProps[1]);
     return(
-      <div onClick={this.handleClick}>
-        <br/>
 
-        <strong>{"Message " + this.props.thisMessage.id + ":"}</strong>{"      " + this.props.thisMessage.text}
-          <br/>
-          <br/>
+      <div>
+        <div className={this.props.cssProps[1]}>
+          <strong>{this.props.thisMessage.user.username}</strong>
+        </div>
 
         {this.props.thisMessage.image_url ?
           <img src={`${this.props.thisMessage.image_url}`}
+            className={this.props.cssProps[3]}
             alt=""
-            height="500"
-            width="500"
-            /> : null}
+            height="200"
+            width="200"
+            background-color="white"
+            /> :
+            <div className={this.props.cssProps[0]}>
+            {"      " + this.props.thisMessage.text}
 
-        <div>  <strong>Emojis:  </strong>
-          {this.props.thisMessage.emojis.map(
-            emoji => (<img src={require(`../../public/images/${emoji.img}`)} alt=""
-              height="18"
-              width="18"
-              />)
-          )}
-        </div>
-        {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}>
-         <EmojiList
-          updateConversation={this.props.updateConversation}
-          message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/>
-        </div> : null}
+                <div>  <strong>Emojis:  </strong>
+                {this.props.thisMessage.emojis.map(
+                  emoji => (<img src={require(`../../public/images/${emoji.img}`)} alt=""
+                  height="18"
+                  width="18"
+                  />)
+                )}
+              </div>
+            </div>
+            }
 
+            {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}>
+             <EmojiList
+              handleClick={this.handleClick}
+              updateConversation={this.props.updateConversation}
+              message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/>
+            </div> : <img
+              className={this.props.cssProps[2]}
+              onClick={this.handleClick}
+              src={require("../emojiPlus.svg")}
+              alt=""
+              height="10"
+              width="10"
+              />}
 
-      <br/>
       </div>
+
     )
   }
 

@@ -4,7 +4,8 @@ class EmojiList extends Component{
   constructor() {
     super()
     this.state = {
-      emojis: []
+      emojis: [],
+      clicked: false
     }
   }
 
@@ -39,6 +40,7 @@ class EmojiList extends Component{
       console.log(this.state);
       return(
         <div className="flex-container row">
+
           {
             emojis.map(emoji => <EmojiButton
               postEmojiToMessage={this.postEmojiToMessage}

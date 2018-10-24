@@ -9,6 +9,14 @@ class ConversationsController < ApplicationController
     render json: @conversation
   end
 
+  def update 
+    @conversation = Conversation.find(params[:id])
+    @user = User.find(params[:user_id])
+    @user.update(conversation_id: params[:id])
+    @conversation.users.push(@user)
+    render json: @conversation
+  end
+
   def create
     @conversation = Conversation.new(conversation_params)
     if @conversation.save
