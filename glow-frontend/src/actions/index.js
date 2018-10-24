@@ -54,6 +54,7 @@ export const mapLeaderBoard = (messages) => {
 }
 
 export const loadActiveUser = (name) => {
+  console.log("within active user the name is, ", name);
   return (dispatch) => {
     console.log("within load active user");
     return fetch(`${API_ROOT}/users`)
@@ -61,17 +62,28 @@ export const loadActiveUser = (name) => {
       .then(users => {
         const activeUser = users.find(user => user.username === name)
           if (activeUser){
+            console.log("the Active user is", activeUser.username, "with an  conversation id of  ", activeUser.conversation_id);
             return dispatch({type: "ACTIVE_USER", payload: activeUser})
           }
       })
   }
 }
 
+export const updateActiveConversation = (conversation) => {
+  return {type: "UPDATE_ACTIVE_CONVERSATION", payload: conversation}
+}
 
+export const updateActiveUser = (user) => {
+  return {type: "UPDATE_ACTIVE_USER", payload: user}
+}
 export const loadActiveConversation = (id, conversations) => {
+
   const activeConversation = conversations.find(
     conversation => conversation.id === id
   )
+  console.log("the id is ", id);
+  console.log("Conversations are ... ", conversations);
+  console.log("the active conversation is   ", activeConversation);
   const leaderboard = loadLeaderBoard(activeConversation.messages)
   console.log(activeConversation);
   return {type: "ACTIVE_CONVERSATION", payload: [activeConversation, leaderboard]}

@@ -24,10 +24,7 @@ class UserSignIn extends Component {
             this.props.loadActiveUser(this.state.signUp)
           }
         )
-        .then(() => {
-          this.props.loadActiveConversation(this.props.aactiveUser.id, this.props.conversations)
-        })
-        .then(()=>           this.props.history.push("/glowchat/:id"))
+        .then(()=> this.props.history.push("/glow-start"))
     }
 
     makeUsername = (event) => {

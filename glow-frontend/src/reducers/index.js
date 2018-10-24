@@ -41,6 +41,17 @@ const reducer = (state = initialState, action) => {
     //   ...state,
     //   leaderboard: action.payload
     // }
+    case 'UPDATE_ACTIVE_USER':
+    return{
+      ...state,
+      activeUser: action.payload
+    }
+
+    case 'UPDATE_ACTIVE_CONVERSATION':
+    return{
+      ...state,
+      activeConversation: action.payload
+    }
 
     case 'ACTIVE_USER':
     return{

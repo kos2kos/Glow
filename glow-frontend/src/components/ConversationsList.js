@@ -8,6 +8,13 @@ import Cable from './Cable';
 import { connect } from 'react-redux';
 import { loadActiveConversation, addConversation, addMessage } from '../actions'
 
+
+// <h2>Conversations</h2>
+// <ul>
+//   {mapConversations(this.props.conversations, this.handleClick)}
+// </ul>
+// <NewConversationForm />
+
 class ConversationsList extends React.Component {
 
 
@@ -86,11 +93,7 @@ class ConversationsList extends React.Component {
             handleReceivedMessage={this.handleReceivedMessage}
           />
         ) : null}
-        <h2>Conversations</h2>
-        <ul>
-          {mapConversations(this.props.conversations, this.handleClick)}
-        </ul>
-        <NewConversationForm />
+
         {
           this.props.activeConversation ? (
             <MessagesArea

@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import thunk from 'redux-thunk'
 import {  BrowserRouter as Router } from 'react-router-dom'
+import 'semantic-ui-css/semantic.min.css';
 
 
 
