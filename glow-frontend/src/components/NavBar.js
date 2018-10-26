@@ -12,49 +12,73 @@ class NavBar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu size="mini" secondary>
-       <Menu.Menu position="left">
-         <Menu.Item>
-           <NavLink to="/user/leaderboard">
-             <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408001/Leader.svg"
-              alt=""
-              height="18"
-              width="18"
-              />
-           </NavLink>
-         </Menu.Item>
-         <Menu.Item>
-           <NavLink to="/user/profile">
-             <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408009/User.svg"
-              alt=""
-              height="18"
-              width="18"
-              />
-           </NavLink>
-          </Menu.Item>
-         <Menu.Item>
-           <NavLink to="/glowchat/:id">
-             <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408009/Chat.svg"
-              alt=""
-              height="18"
-              width="18"
-              />
-           </NavLink>
-          </Menu.Item>
-       </Menu.Menu>
+      // <div class="ui green three item inverted menu">
+      //   <a class="item">
+      //     Home
+      //   </a>
+      //   <a class="item active">
+      //     Messages
+      //   </a>
+      //   <a class="item">
+      //     Friends
+      //   </a>
+      // </div>
 
-    <Menu.Menu position="right">
-       <Menu.Item>
-         <NavLink to="/home">
-           <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408895/Lock.svg"
-            alt=""
-            height="18"
-            width="18"
-            />
-         </NavLink>
+<div style={{  "padding-bottom": "72px",
+               "padding-left": "0px",
+               "padding-right": "0px"}}>
+      <Menu size="mini"
+        style={{
+          position: "fixed",
+          top: "0",
+          width: "500px",
+          padding: "5px",
+          backgroundColor:"#19a974" }}
+        secondary>
+        <Menu.Item className="eric" >
+          <NavLink to="/user/leaderboard" >
+            <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408001/Leader.svg"
+             alt=""
+             height="25"
+             width="25"
+
+             />
+          </NavLink>
         </Menu.Item>
-      </Menu.Menu>
+        <Menu.Item>
+          <NavLink to="/user/profile">
+            <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408009/User.svg"
+             alt=""
+             height="25"
+             width="25"
+             />
+          </NavLink>
+         </Menu.Item>
+        <Menu.Item>
+          <NavLink to="/glowchat/:id">
+            <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408009/Chat.svg"
+             alt=""
+             height="25"
+             width="25"
+             />
+          </NavLink>
+         </Menu.Item>
+
+
+     <Menu.Menu position="right">
+        <Menu.Item>
+          <NavLink to="/home">
+            <img src="https://res.cloudinary.com/kos2kos/image/upload/v1540408895/Lock.svg"
+             alt=""
+             height="25"
+             width="25"
+             />
+          </NavLink>
+         </Menu.Item>
+       </Menu.Menu>
      </Menu>
+   </div>
+
 
     )
   }

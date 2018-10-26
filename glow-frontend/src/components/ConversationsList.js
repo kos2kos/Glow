@@ -47,6 +47,7 @@ class ConversationsList extends React.Component {
   };
 
   handleReceivedMessage = response => {
+    console.log("Here is my response", response);
     const { message } = response;
 
     const conversations = [...this.props.conversations];
@@ -59,8 +60,10 @@ class ConversationsList extends React.Component {
     if(foundMessage){
       conversation.messages = this.findAndReplace(message, conversation.messages)
     } else {
+      console.log();
       conversation.messages = [...conversation.messages, message]
     }
+    console.log("This is my message", message);
     this.props.addMessage(message, this.props.conversations)
     this.setState({ conversations });
   };
@@ -81,13 +84,14 @@ class ConversationsList extends React.Component {
     console.log("this is state," ,this.state);
     return (
       <div className="conversationsList" style={{textAlign: "center"}}>
-        <h1>Current User: {this.props.activeUser.username}</h1>
-        <h1>{this.props.activeUser.username}'s Points: {this.props.activeUser.points}</h1>
+        {/*<h1>Current User: {this.props.activeUser.username}</h1>
+        <h1>{this.props.activeUser.username}'s Points: {this.props.activeUser.points}</h1>*/}
         <ActionCable
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />
       {this.props.conversations.length ? (
+
           <Cable
             conversations={this.props.conversations}
             handleReceivedMessage={this.handleReceivedMessage}
@@ -97,7 +101,7 @@ class ConversationsList extends React.Component {
         {
           this.props.activeConversation ? (
             <MessagesArea
-              updateConversation={this.updateConversation}
+
               submitEmoji={this.submitEmoji}
               conversation={this.props.activeConversation}
             />

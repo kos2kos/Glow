@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EmojiList from './EmojiList'
 import '../App.css'
+import {connect} from 'react-redux'
 
 class Message extends Component{
   constructor() {
@@ -15,7 +16,8 @@ class Message extends Component{
   }
 
   render(){
-    console.log("Props for Message,", this.props.cssProps[1]);
+    console.log(this.props.activeConversation.messages)
+    console.log("Props for Message,", this.props);
     return(
 
       <div>
@@ -48,7 +50,6 @@ class Message extends Component{
             {this.state.clicked === this.props.thisMessage.id ? <div className={'flex'}>
              <EmojiList
               handleClick={this.handleClick}
-              updateConversation={this.props.updateConversation}
               message={this.props.thisMessage} submitEmoji={this.props.submitEmoji}/>
             </div> : <img
               className={this.props.cssProps[2]}
@@ -70,4 +71,9 @@ class Message extends Component{
 
 }
 
-export default Message
+const mapStateToProps = state => ({
+  activeUser: state.activeUser,
+  activeConversation: state.activeConversation
+})
+
+export default connect(mapStateToProps,null) (Message)

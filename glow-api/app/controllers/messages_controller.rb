@@ -34,7 +34,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    # byebug
     user = User.find(params[:user_id])
     message = Message.new(text: params[:text], conversation_id: 
     params[:conversation_id], user_id: params[:user_id])
@@ -45,6 +44,7 @@ class MessagesController < ApplicationController
     if user.conversation && message.conversation_id = user.conversation.id
       message.save 
       if message.save
+        
         if !(params[:image] === "no image")
           attachImageToMessage(message)
         end
@@ -56,6 +56,7 @@ class MessagesController < ApplicationController
       message.save 
       if message.save
          # check if user has an image adds point value to player
+         
         if !(params[:image] === "no image")
           attachImageToMessage(message)
         end

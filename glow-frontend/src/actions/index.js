@@ -20,6 +20,7 @@ export const loadNewUser = (newUser) => {
 
 export const submitMessage = (imageData, id) =>{
   return (dispatch)=>{
+    console.log("submitMessage", imageData, id);
     return (
       postMessage(imageData, id)
       .then(() => {
@@ -97,12 +98,12 @@ export const addMessage = (message, conversations)=> {
   );
   const foundMessage = conversation.messages.find(findMessage => findMessage.id === message.id)
 
-  if(foundMessage){
-    conversation.messages = findAndReplace(message, conversation.messages)
-  } else {
-    conversation.messages = [...conversation.messages, message]
-  }
-  return {type: "ADD_MESSAGE", payload: conversations}
+  const updatedConversations = findAndReplace(message, conversation.messages, conversations, conversation.id)
+  const updatedActiveConversations = updatedConversations.find(convo => convo.id === conversation.id)
+
+  console.log("updateActiveConversation", updatedActiveConversations);
+
+  return {type: "ADD_MESSAGE", payload: [updatedConversations, updatedActiveConversations]}
 }
 
 
@@ -137,13 +138,23 @@ const loadGroupChat = (messages) => {
   }
 }
 
-const findAndReplace = (message, conversation_messages) => {
-  let newConvo = conversation_messages.map(convoMessage => {
+const findAndReplace = (message, conversation_messages, conversations, id) => {
+  console.log("message findAndReplace", message);
+  let newMessagesForOneConversation = conversation_messages.map(convoMessage => {
     if (convoMessage.id === message.id){
       convoMessage.emojis = message.emojis
       return convoMessage
     }
     return convoMessage
   })
-  return newConvo
+
+  const updatedConversations = conversations.map(conversation => {
+    if (conversation.id === id){
+      conversation.messages = newMessagesForOneConversation
+      return conversation
+    }
+    return conversation
+  })
+  console.log("final list of messages ", newMessagesForOneConversation);
+  return updatedConversations
 }

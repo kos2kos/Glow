@@ -47,8 +47,10 @@ class UserSignIn extends Component {
 
     render(){
         return(
-            <div>
-              <h1> Welcome To Glow</h1>
+            <div style={{"text-algin": "center",
+            "margin-left": "95px"}}>
+              <h1 style={{"text-algin": "center",
+              "margin-left": "35px"}}> Welcome To Glow</h1>
               <br/><br/>
                 <form onSubmit={this.signUpUser}>
                     <label> Sign Up:</label>
@@ -71,6 +73,16 @@ class UserSignIn extends Component {
 
                 </form>
             </div>
+
+
+
+
+
+
+
+
+
+
         )
     }
 }

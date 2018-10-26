@@ -9,6 +9,7 @@ const MessagesArea = (props) => {
 
 
   const orderedMessages = messages => {
+    console.log("messages", messages);
     const sortedMessages = messages.sort(
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
     );
@@ -24,25 +25,35 @@ const MessagesArea = (props) => {
       }
     }
     return sortedMessages.map(message => {
-      return <ul> <Message
+      console.log("Sorted message:", message);
+      return <ul style={{padding: "8px"}}>
+        <Message
+          test={props.activeConversation}
         cssProps={messageCss(message)}
-        updateConversation={props.updateConversation}
         submitEmoji={props.submitEmoji}
-        key={message.id} thisMessage={message}/></ul>
-    });
-  };
-
+        key={message.id} thisMessage={message}/> </ul>
+    })
+  }
+    console.log("Props from Message Area,", props.activeConversation);
   return (
     <div className="messagesArea" style={{textAlign: "center"}}>
       <h2>{props.conversation.title}</h2>
-      <ul>{orderedMessages(props.conversation.messages)}</ul>
+      <ul style={{
+        width: "500px",
+        height: "380px",
+        padding: "0px",
+        overflow: "scroll",
+        "overflow-x": "hidden"}}>
+        {orderedMessages(props.activeConversation.messages)}</ul>
       <NewMessageForm conversation_id={props.conversation.id} />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  activeUser: state.activeUser
+  activeUser: state.activeUser,
+  activeConversation: state.activeConversation,
+  messages: state.activeConversation.messages
 })
 
 export default connect(mapStateToProps,null)(MessagesArea);

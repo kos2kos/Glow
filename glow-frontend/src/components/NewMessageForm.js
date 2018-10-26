@@ -16,6 +16,7 @@ class NewMessageForm extends React.Component {
   };
 
   handleChange = e => {
+    console.log(e.target.value);
     this.setState({ text: e.target.value });
   };
 
@@ -45,24 +46,26 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newMessageForm">
+      <div className="newMessageForm fixed bottom sticky">
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
-          <br />
-        <input type="file"
-          onChange={this.handleFile}
-          accept="image/*"
-          capture
-          />
-          <br />
-
-        <input
-          type="text"
-          value={this.state.text}
-          onChange={this.handleChange}
-          />
-          <input type="submit" />
+          <div class="ui input focus">
+            <input
+              style={{width: "400px"}}
+              value={this.state.text}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Type here..."/>
+              <input type="submit" />
+          </div>
+          <div class="ui input focus">
+            <input type="file"
+              onChange={this.handleFile}
+              accept="image/*"
+              capture
+              />
+          </div>
         </form>
+
       </div>
     );
   };

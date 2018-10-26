@@ -73,9 +73,11 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'ADD_MESSAGE':
+    console.log("ADD_MESSAGE new message (reducer)", action);
     return{
       ...state,
-      conversations: action.payload
+      conversations: action.payload[0],
+      activeConversation: action.payload[1]
     }
 
 
