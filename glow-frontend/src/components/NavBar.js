@@ -12,17 +12,6 @@ class NavBar extends Component {
     const { activeItem } = this.state
 
     return (
-      // <div class="ui green three item inverted menu">
-      //   <a class="item">
-      //     Home
-      //   </a>
-      //   <a class="item active">
-      //     Messages
-      //   </a>
-      //   <a class="item">
-      //     Friends
-      //   </a>
-      // </div>
 
 <div style={{  "padding-bottom": "72px",
                "padding-left": "0px",
