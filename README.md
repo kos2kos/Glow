@@ -2,20 +2,6 @@
 
 *Glow* a workout application that gamifies users workouts in a competitive framework.
 
-
-#Wireframe
-![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476763/wireframe2.png)
-
-#Concept Art
-![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476763/conceptArt.png)
-
-#Project Overview
-
-![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476762/GlowArt.png)
-
-##Video Demo
-https://drive.google.com/file/u/1/d/1hZ_KPC_KAVBhXOtLs846aDqOreICtMpQ/view?usp=sharing
-
 ## Application Features
 - User can message other users in real time without refreshing the page.
 
@@ -46,6 +32,20 @@ https://drive.google.com/file/u/1/d/1hZ_KPC_KAVBhXOtLs846aDqOreICtMpQ/view?usp=s
 ## Client-Side Install Instructions
 1. Run `npm install`
 2. Run `yarn start`
+
+
+#Wireframe
+![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476763/wireframe2.png)
+
+#Concept Art
+![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476763/conceptArt.png)
+
+#Project Overview
+
+![Screenshot](https://res.cloudinary.com/kos2kos/image/upload/v1544476762/GlowArt.png)
+
+##Video Demo
+https://drive.google.com/file/u/1/d/1hZ_KPC_KAVBhXOtLs846aDqOreICtMpQ/view?usp=sharing
 
 ## Author
 **Nkosi Enciso Givhan**
