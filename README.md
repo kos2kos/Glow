@@ -30,8 +30,9 @@
 6. Run `rails s -p 3000`
 
 ## Client-Side Install Instructions
-1. Run `npm install`
-2. Run `yarn start`
+1. In your terminal `cd glow-frontend`
+2. Run `npm install`
+3. Run `yarn start`
 
 
 ## Wireframe
